@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8; /* Fallback color */
+}
+h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  text-transform: uppercase;
+  margin-top: 50px;
+}
+.calculator {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F1564374.jpg&f=1&nofb=1&ipt=902d6da73aee7ea1c077af4a9a2da066f2fa0f71a0d98e97c34cd95458176b23&ipo=images'); /* Specify the path to your background image */
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <div class="calculator">
+    <input type="text" id="result" disabled>
+    <div class="buttons">
+      <button onclick="clearResult()">C</button>
+      <button onclick="appendToResult('7')">7</button>
+      <button onclick="appendToResult('8')">8</button>
+      <button onclick="appendToResult('9')">9</button>
+      <button onclick="appendToResult('/')">/</button>
+      <button onclick="appendToResult('4')">4</button>
+      <button onclick="appendToResult('5')">5</button>
+      <button onclick="appendToResult('6')">6</button>
+      <button onclick="appendToResult('*')">*</button>
+      <button onclick="appendToResult('1')">1</button>
+      <button onclick="appendToResult('2')">2</button>
+      <button onclick="appendToResult('3')">3</button>
+      <button onclick="appendToResult('-')">-</button>
+      <button onclick="appendToResult('0')">0</button>
+      <button onclick="appendToResult('.')">.</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="appendToResult('+')">+</button>
+      <button onclick="calculateExponent()">^</button>
+      <button onclick="calculateSquareRoot()">√</button>
+      <button onclick="appendToResult('%')">%</button>
+    </div>
+  </div>
+  <script>
+    function appendToResult(value) {
+  document.getElementById('result').value += value;
+}
+
+function clearResult() {
+  document.getElementById('result').value = '';
+}
+
+function calculateResult() {
+  try {
+    const expression = document.getElementById('result').value;
+    const result = eval(expression);
+    document.getElementById('result').value = result;
+  } catch (error) {
+    document.getElementById('result').value = 'Error';
+  }
+}
+
+function calculateExponent() {
+  try {
+    const expression = document.getElementById('result').value;
+    const parts = expression.split('^');
+    const base = parseFloat(parts[0]);
+    const exponent = parseFloat(parts[1]);
+    const result = Math.pow(base, exponent);
+    document.getElementById('result').value = result;
+  } catch (error) {
+    document.getElementById('result').value = 'Error';
+  }
+}
+
+function calculateSquareRoot() {
+  try {
+    const expression = document.getElementById('result').value;
+    const result = Math.sqrt(eval(expression));
+    document.getElementById('result').value = result;
+  } catch (error) {
+    document.getElementById('result').value = 'Error';
+  }
+}
+
+  </script>
+</body>
+</html>
